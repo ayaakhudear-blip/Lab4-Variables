@@ -1,0 +1,60 @@
+Welcome to SWI-Prolog (threaded, 64 bits, version 10.0.2)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+21 ?- house = house.
+true.
+
+% Both sides are exactly the same, so the unification succeeds.
+
+21 ?- house = abc.
+false.
+
+% house and abc are different atoms, so they cannot be unified.
+
+22 ?-  edge(a,b) = edge(C,b).
+C = a.
+
+% Both sides are edge with 2 variables, and the second variable are equal so C can take the value a (first variable).
+
+23 ?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+
+% C becomes a and B becomes d, so the two terms match.
+
+24 ?- edge(C,B) = edge(a,d).
+C = a,
+B = d.
+
+% C becomes a and B becomes d, which makes both sides equal.
+
+25 ?- edge(A,f(a,b)) = edge(a,B).
+A = a,
+B = f(a, b).
+
+% A becomes a, while B takes the whole term f(a,b).
+
+26 ?- edge(A,A) = edge(b,c).
+false.
+
+% A would have to be both b and c at the same time, so the unification fails.
+
+
+27 ?- edge(A,A) = edge(b,b).
+A = b.
+
+% A can be b in both positions, so the unification works just fine.
+
+28 ?- A = B, B = f.
+A = B, B = f.
+
+% A is first linked to B, then B becomes f, so they both end up with the value f.
+
+29 ?- A = B, B = f, A = e.
+false.
+
+% A and B become f first, but then A is asked to become e, so the unification fails.

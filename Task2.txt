@@ -1,0 +1,48 @@
+Welcome to SWI-Prolog (threaded, 64 bits, version 10.0.2)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+34 ?- consult(['c:/Users/ayaak/OneDrive/Desktop/Lab04_family_facts.pl']).
+true.
+
+35 ?- female(X).
+X = sara ;
+X = nora.
+
+% Find all people listed as female.
+
+36 ?- male(X).
+X = ali ;
+X = ahmad ;
+X = muhammad ;
+X = faisal ;
+X = hassan ;
+X = khan.
+
+% There is 6 males, so yes there is at least one male exists in the facts.
+
+37 ?- parent(X, Y), parent(Y, faisal).
+X = ali,
+Y = Muhammad.
+
+% Find Faisal's grandparent by checking a parent of his parent.
+
+38 ?- parent(ahmad, X), female(X).
+X = sara ;
+X = nora ;
+false.
+
+% Find Ahmad's children who are female, the false because there is no more applicable people.
+
+39 ?- parent(X, ahmad), parent(X, muhammad).
+X = ali.
+
+% Check if Ahmad and Muhammad share the same parent, yes and he is ali.
+
+40 ?- male(khan), parent(X, khan), parent(X, nora).
+X = ahmad.
+
+% Check if Khan is male and shares a parent with Nora, answer is yes and he is ahmed.
